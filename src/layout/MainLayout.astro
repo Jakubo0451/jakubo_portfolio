@@ -2,14 +2,16 @@
 import MainHead from "./MainHead.astro";
 import "../styles/global.css";
 import Nav from "../components/Nav.astro"
+import Footer from "../components/Footer.astro";
 const { title, seoTitle, seoDesc } = Astro.props;
 ---
 
 <html>
     <MainHead title={title} seoTitle={seoTitle} seoDesc={seoDesc} />
-    <body class="bg-slate-900 text-white">
+    <body class="bg-slate-900 text-white grid gap-0 min-h-screen">
         <Nav />
         <slot />
+        <Footer/>
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
         body {

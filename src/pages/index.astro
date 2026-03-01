@@ -8,5 +8,16 @@ import MainLayout from "../layout/MainLayout.astro"
 >
   <div class="w-8/12 md:w-6/12 mx-auto">
 	<h1 class="text-5xl md:text-6xl text-center">Hi!, I am Jakub Olszewski</h1>
+  <div class="text-center py-5">
+    <span id="typed"></span>
   </div>
 </MainLayout>
+
+   <script>
+    import Typed from "typed.js";
+    var typed = new Typed('#typed', {
+      strings: ['I am a <strong>Web Developer</strong>', 'I <em>work</em> with React, NextJS, Astro, and Express'],
+      typeSpeed: 40,
+      loop: true
+    });
+  </script>
