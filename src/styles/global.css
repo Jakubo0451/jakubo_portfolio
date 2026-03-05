@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@import "tailwindcss";
+
+@theme {
+  --color-mahogany: #46342A;
+  --color-bone:  #F9F0EA;
+  --color-tobacco:  #B59E7D;
+  --color-mountain: #AAA396;
+  --color-sand:     #CEC1A8;
+}
