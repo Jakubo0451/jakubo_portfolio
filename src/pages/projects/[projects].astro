@@ -1,0 +1,21 @@
+---
+import MainLayout from '../../layout/MainLayout.astro'
+
+export async function getStaticPaths() {
+    return [
+        {params: {projects: 'studyfront'}, props: {
+            name: 'Studyfront',
+            desc: 'A research platform for conducting studies.',
+        },
+    },
+    ];
+}
+
+const {projects} = Astro.params;
+const { name, desc} = Astro.props;
+
+---
+
+<MainLayout>
+    <h1></h1>
+</MainLayout>

@@ -2,11 +2,40 @@
 import MainLayout from "../layout/MainLayout.astro";
 ---
 
-<MainLayout title="Jakub Olszewski's Projects" seoDesc="A list of projects and experiences">
-    <div class="w-8/12 lg:w-6/12 mx-auto">
-        <h1 class="text-5xl my-2">Projects</h1>
-        <div>
-            <a href=""><img src="" alt=""></a>
-        </div>
+<MainLayout
+  title="Jakub Olszewski's Projects"
+  seoDesc="A list of projects and experiences"
+>
+  <div class="w-8/12 lg:w-6/12 mx-auto">
+    <h1 class="text-5xl my-2">Projects</h1>
+    <div class="grid md:grid-cols-1 gap-3">
+      <a href="/projects/studyfront"
+        ><img
+          class="rounded"
+          src="/images/studyfront-project-image.png"
+          width="300px"
+          height="300px"
+          alt=""
+        /></a
+      >
+      <a href="/projects/bachelor"
+        ><img
+         class="rounded"
+          src="/images/ai-learning-platform-bachelor-image.png"
+          width="300px"
+          height="300px"
+          alt=""
+        /></a
+      >
+      <a href="/projects/yapper"
+        ><img
+         class="rounded"
+          src="/images/yapper-twitter-clone-image.png"
+          width="300px"
+          height="300px"
+          alt=""
+        /></a
+      >
     </div>
+  </div>
 </MainLayout>
