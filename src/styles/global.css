@@ -1,11 +1,35 @@
 @import "tailwindcss";
 
-@import "tailwindcss";
-
 @theme {
   --color-mahogany: #46342A;
   --color-bone:  #F9F0EA;
   --color-tobacco:  #B59E7D;
   --color-mountain: #AAA396;
   --color-sand:     #CEC1A8;
+  --bg:      #0e0e0e;
+  --surface: #161616;
+  --border:  #2a2a2a;
+  --text:    #e8e4dc;
+  --muted:   #aba89f;
+  --faint:   #6b6760;
+  --accent:  #c9f03a;
+}
+
+:root {
+  --font-sans:  'Lato', sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono:  'DM Mono', monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.2;
+  pointer-events: none;
 }
