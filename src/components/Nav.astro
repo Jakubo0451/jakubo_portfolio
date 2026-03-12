@@ -2,9 +2,9 @@
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 ---
 
-<header class="lg:flex p-5 gap-5 border-b border-(--border)">
+<header class="lg:flex items-center p-5 gap-5 border-b border-(--border)">
   <Astronav>
-    <div class="flex w-full justify-between">
+    <div class="flex w-full justify-between"> 
       <a
         href="/"
         class="font-mono text-(--text) hover:text-(--accent) transition-colors"
@@ -19,27 +19,30 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
         <li>
           <a
             class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200"
-            href="/">Home</a>
+            href="/">Home</a
+          >
         </li>
         <li>
           <a
             class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200"
-            href="/projects">Work</a>
+            href="/projects">Work</a
+          >
         </li>
         <li>
           <a
             class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200"
-            href="/about">About</a>
+            href="/about">About</a
+          >
         </li>
       </ul>
     </MenuItems>
-    <button
-      id="theme-toggle"
-      class="font-mono text-xs text-[var(--muted)] hover:text-[var(--text)] transition-colors border border-[var(--border)] px-3 py-1 rounded-sm"
-    >
-      light
-    </button>
   </Astronav>
+  <button
+    id="theme-toggle"
+   <button id="theme-toggle" class="self-center font-mono text-xs text-[var(--muted)] hover:text-[var(--text)] transition-colors border border-[var(--border)] px-3 py-1 rounded-sm">
+  >
+    light
+  </button>
 </header>
 
 <script defer>

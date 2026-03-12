@@ -68,3 +68,7 @@ body::before {
   background: rgba(70,52,42,0.13);
   border-color: rgba(70,52,42,0.5);
 }
+
+[data-theme="light"] footer {
+  color: var(--text);
+}
