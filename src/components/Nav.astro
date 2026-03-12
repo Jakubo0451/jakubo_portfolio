@@ -4,45 +4,29 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
 <header class="lg:flex items-center p-5 gap-5 border-b border-(--border)">
   <Astronav>
-    <div class="flex w-full justify-between"> 
+    <div class="flex w-full justify-between items-center">
       <a
         href="/"
         class="font-mono text-(--text) hover:text-(--accent) transition-colors"
-        >JO</a
-      >
-      <div class="block lg:hidden">
-        <MenuIcon class="w-4 h-4 text-mahogny" />
+      >JO</a>
+      <div class="flex items-center gap-3">
+        <button
+          id="theme-toggle"
+          class="font-mono text-xs text-(--muted) hover:text-(--text) transition-colors border border-(--border) px-3 py-1 rounded-sm"
+        >light</button>
+        <div class="block lg:hidden">
+          <MenuIcon class="w-4 h-4 text-mahogny" />
+        </div>
       </div>
     </div>
     <MenuItems class="hidden lg:flex">
-      <ul class="flex flex-col lg:flex-row lg:gap-5">
-        <li>
-          <a
-            class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200"
-            href="/">Home</a
-          >
-        </li>
-        <li>
-          <a
-            class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200"
-            href="/projects">Work</a
-          >
-        </li>
-        <li>
-          <a
-            class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200"
-            href="/about">About</a
-          >
-        </li>
+      <ul class="flex flex-col items-end lg:items-start lg:flex-row lg:gap-5">
+        <li><a class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200" href="/">Home</a></li>
+        <li><a class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200" href="/projects">Work</a></li>
+        <li><a class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200" href="/about">About</a></li>
       </ul>
     </MenuItems>
   </Astronav>
-  <button
-    id="theme-toggle"
-   <button id="theme-toggle" class="self-center font-mono text-xs text-(--muted) hover:text-(--text) transition-colors border border-(--border) px-3 py-1 rounded-sm">
-  >
-    light
-  </button>
 </header>
 
 <script defer>
