@@ -42,16 +42,16 @@ const { name, desc, link  } = Astro.props;
 ---
 
 <MainLayout>
-  <div class="max-w-3xl mx-auto px-8 py-16">
+ <div class="max-w-3xl mx-auto px-4 md:px-8 py-16">
     
     <p class="font-mono text-xs text-(--accent) tracking-widest uppercase mb-4">Project</p>
     <h1 class="font-sans text-5xl text-(--text) mb-8">{name}</h1>
     
-    <img
-      src={`/images/${projects}-project-image.png`}
-      class="rounded w-full object-cover border border-(--border)"
-      alt={name}
-    />
+      <img
+        src={`/images/${projects}-project-image.png`}
+        class="rounded w-full h-auto border border-(--border)"
+        alt={name}
+      />
 
     <div class="mt-8 border-t border-(--border) pt-8">
       <p class="font-mono text-sm text-(--text) leading-loose">{desc}</p>
