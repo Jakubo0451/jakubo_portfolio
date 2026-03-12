@@ -1,41 +1,66 @@
 ---
-import MainLayout from '../../layout/MainLayout.astro'
+import MainLayout from "../../layout/MainLayout.astro";
 
 export async function getStaticPaths() {
-    return [
-        {params: {projects: 'studyfront'}, props: {
-            name: 'Studyfront',
-            desc: 'A research platform for conducting studies.',
+  return [
+    {
+      params: { projects: "studyfront" },
+      props: {
+        name: "Studyfront",
+        desc: "A web app built for researchers who need to create and run studies. It is built with Next.js as part of a Full Stack Web Development course, it supports seven question types, time-limited studies, unpublished previews, and result exports in CSV or JSON. Live at group5.sustainability.it.ntnu.no",
+        link: "https://group5.sustainability.it.ntnu.no",
+
+    },
+    },
+    {
+      params: { projects: "bachelor" },
+      props: {
+        name: "Ellerin",
+        desc: "Our bachelor thesis turned into a working platform. It grew out of a literature study as a part of a In Depth Project subject, on how AI affects student learning. We have found the impact depends heavily on how it's used and who the receipient is. Ellerin tries to push it in a useful direction: it uses AI to map what a student already knows, identifies the gaps, and builds a personalised curriculum from there. Built with the MERN stack. Currently in early development.",
+      },
+    },
+    {
+      params: { projects: "yapper" },
+      props: {
+        name: "Yapper",
+        desc: "A Twitter clone built for a Cloud Technologies course, with the focus on backend, caching, reverse proxy, and load balancing. The backend runs on Python with PostgreSQL, and the frontend is React. We gave it a Windows 95 aesthetic because why not. Live at yapper-zwai.onrender.com",
+        link: "https://yapper-zwai.onrender.com/login",
         },
     },
-            {params: {projects: 'bachelor'}, props: {
-            name: 'Bachelor',
-            desc: 'An AI learning platform with focus on pedagogic approach and cognitive understanding.',
-        },
+    {
+      params: { projects: "cjs" },
+      props: {
+        name: "CJS",
+        desc: "A quiz app built for museums to raise awareness about AI-generated images. Visitors are shown two images side by side and have to spot which one was made by AI. It's designed to get people thinking about how convincing AI imagery has become.",
+      },
     },
-          {params: {projects: 'yapper'}, props: {
-            name: 'Yapper',
-            desc: 'A social media platform stylized to look like Windows 95!',
-        },
-    },
-        {params: {projects: 'cjs'}, props: {
-            name: 'CJS',
-            desc: 'Check if you can tell AI from real images!',
-        },
-    }
-    ];
+  ];
 }
 
-const {projects} = Astro.params;
-const { name, desc} = Astro.props;
-
+const { projects } = Astro.params;
+const { name, desc, link  } = Astro.props;
 ---
 
 <MainLayout>
-<section class="mx-auto w-3/6">
-    <img src=`/images/${projects}-project-image.png` width="600" width="600" class="rounded">
-    <h1 class="font-bold mt-4">Project: {name}</h1>
-    <p>{desc}</p>
-</section>
+  <div class="max-w-3xl mx-auto px-8 py-16">
     
+    <p class="font-mono text-xs text-(--accent) tracking-widest uppercase mb-4">Project</p>
+    <h1 class="font-sans text-5xl text-(--text) mb-8">{name}</h1>
+    
+    <img
+      src={`/images/${projects}-project-image.png`}
+      class="rounded w-full object-cover border border-(--border)"
+      alt={name}
+    />
+
+    <div class="mt-8 border-t border-(--border) pt-8">
+      <p class="font-mono text-sm text-(--text) leading-loose">{desc}</p>
+      {link && (
+        <a href={link} target="_blank" class="text-(--accent) hover:underline font-mono text-sm mt-4 inline-block">
+          Visit project ↗
+        </a>
+      )}
+    </div>
+
+  </div>
 </MainLayout>

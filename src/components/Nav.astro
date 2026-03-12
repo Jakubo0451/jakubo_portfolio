@@ -3,17 +3,17 @@ import { Astronav, MenuItems, MenuIcon} from "astro-navbar";
 ---
 
 
-<header class="lg:flex p-5 gap-5">
+<header class="lg:flex p-5 gap-5 border-b border-(--border)">
     <Astronav>
         <div class="flex w-full justify-between">
-            <a href="/">JO</a>
+            <a href="/" class="font-mono text-(--text) hover:text-(--accent) transition-colors">JO</a>
             <div class="block lg:hidden"><MenuIcon class="w-4 h-4 text-mahogny"/></div>
         </div>
         <MenuItems class="hidden lg:flex">
             <ul class="flex flex-col lg:flex-row lg:gap-5">
-                <li><a href="/">Home</a></li>
-                <li><a href="/projects">Projects</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200"href="/">Home</a></li>
+                <li><a class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200"href="/projects">Work</a></li>
+                <li><a class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200" href="/about">About</a></li>
             </ul>
         </MenuItems>
     </Astronav>

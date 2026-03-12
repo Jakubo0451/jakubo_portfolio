@@ -3,88 +3,118 @@ import MainLayout from "../layout/MainLayout.astro";
 ---
 
 <MainLayout title="Jakub Olszewski's about">
-  <div class="w-6/12 mx-auto">
+  <div class="max-w-185 mx-auto px-8 py-20">
+    <p class="font-mono text-s text-(--accent) mb-3">About</p>
     <section>
-      <h1 class="text-5xl">About</h1>
-      <img
-        src="/images/studyfront-project-image.png"
-        width="500"
-        class="my-2 shadow-md drop-shadow-[10px_10px_35px_rgba(1,1,1,0.2)]"
-        alt=""
-      />
-      <header>
-        <p>About</p>
-        <h1>Hey, I'm [Your Name].</h1>
-        <p>
-          A web development student about to graduate. I've spent the last few
-          years learning how to build things for the web, and I'm now looking
-          for the chance to do that for real.
+      <section
+        class="p-4 bg-(--surface) mb-10 border border-(--border) rounded-md overflow-hidden"
+      >
+        <h2
+          class="mb-3 font-sans text-4xl border-l-2 border-[var(--accent)] pl-3"
+        >
+          What I Build
+        </h2>
+        <p class="font-mono">
+          Most of what I've been working on has been made with JavaScript. Both
+          the component driven frontends and the APIs behind them. I'm more
+          comfortable on the frontend, but I am actively looking to improve
+          myself across the stack.
         </p>
-      </header>
-
-      <section>
-        <h2>What I Build</h2>
-        <p>
-          Most of what I've worked on lives in the JavaScript world —
-          component-driven frontends and the APIs behind them. I'm comfortable
-          across the stack and still actively figuring out where I want to go
-          deep.
-        </p>
-        <p>
-          I work with HTML, CSS, JavaScript, React, Node.js, Express, and
-          MongoDB.
-        </p>
+        <br />
+        <p>I work with: </p>
+        <div class="flex flex-wrap gap-2 mt-4 mb-4">
+          {
+            [
+              "HTML",
+              "CSS",
+              "JavaScript",
+              "React",
+              "NextJS",
+              "Astro",
+              "Node.js",
+              "Express",
+              "MongoDB",
+              'Python',
+              "Figma",
+              "Illustrator",
+              "Photoshop",
+            ].map((t) => <span class="pill">{t}</span>)
+          }
+        </div>
       </section>
 
-      <section>
-        <h2>Selected Projects</h2>
-
-        <article>
-          <h3>Project One</h3>
-          <p>
-            A full-stack app built around API integration and user
-            authentication, with a responsive UI that works across devices.
-          </p>
-        </article>
-
-        <article>
-          <h3>Project Two</h3>
-          <p>
-            A frontend project centered on reusable components and smooth,
-            intuitive interactions.
-          </p>
-        </article>
-
-        <article>
-          <h3>Project Three</h3>
-          <p>
-            A backend-focused build where I worked through API design, database
-            structure, and server-side logic.
-          </p>
-        </article>
-      </section>
-
-      <section>
-        <h2>How I Work</h2>
-        <p>
-          I try to write code that's simple and easy to follow — not just for
-          me, but for whoever reads it next. I care about accessibility, browser
-          consistency, and not overcomplicating things.
+      <section
+        class="p-4 bg-(--surface) mb-10 border border-(--border) rounded-md overflow-hidden"
+      >
+        <h2
+          class="mb-3 font-sans text-4xl border-l-2 border-[var(--accent)] pl-3"
+        >
+          How I Work
+        </h2>
+        <p class="font-mono">
+          I try not to overthink my code so that it is simple and easy to
+          follow, not just for me but for my colleagues and whoever reads it
+          next. I care about accessibility, sustainability browser consistency
+          and not overcomplicating things.
         </p>
-        <p>
+        <br />
+        <p class="font-mono">
           I'm finishing my degree and these projects represent where I am right
           now. I don't have years of production experience yet, but I'm serious
           about the craft and keen to keep improving.
         </p>
       </section>
 
-      <section>
-        <h2>Let's Connect</h2>
-        <p>Always happy to chat or hear about opportunities.</p>
-        <ul>
-          <li><a href="#">GitHub</a></li>
-          <li><a href="#">LinkedIn</a></li>
-          <li><a href="mailto:">Email</a></li>
+      <section
+        class="p-4 bg-(--surface) mb-10 border border-(--border) rounded-md overflow-hidden"
+      >
+        <h2
+          class="mb-3 font-sans text-4xl border-l-2 border-[var(--accent)] pl-3"
+        >
+          Experience
+        </h2>
+        <p class="font-mono">
+          Before finishing my degree I did an internship as a Datacenter
+          Operations Engineer at a ByteDance datacenter. It was a different side
+          of the industry from web development, physical infrastructure,
+          operations, keeping things running at scale, breakfix and datacenter
+          operations. I came away with a letter of recommendation and a much
+          better understanding of what sits underneath the software I build.
+        </p>
+      </section>
+
+      <section
+        class="p-4 bg-(--surface) border border-(--border) rounded-md overflow-hidden"
+      >
+        <h2
+          class="mb-3 font-sans text-4xl border-l-2 border-[var(--accent)] pl-3"
+        >
+          Let's Connect
+        </h2>
+        <p class="font-mono">
+          Always happy to chat or hear about new opportunities.
+        </p>
+        <ul class="mt-3 flex flex-col gap-1">
+          <li>
+            <a
+            target="_blank"
+              href="https://github.com/Jakubo0451"
+              class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors"
+              >GitHub ↗</a>
+          </li>
+          <li>
+            <a
+            target="_blank"
+              href="https://www.linkedin.com/in/jakub-olszewski-43922534a/"
+              class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors"
+              >LinkedIn ↗</a>
+          </li>
+          <li>
+            <a
+              href="mailto:jakubolszewski451@gmail.com"
+              class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors"
+              >Email ↗</a>
+          </li>
         </ul>
       </section>
     </section>

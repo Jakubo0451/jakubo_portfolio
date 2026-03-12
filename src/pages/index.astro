@@ -1,22 +1,27 @@
 ---
-import MainLayout from "../layout/MainLayout.astro"
+import MainLayout from "../layout/MainLayout.astro";
 ---
 
 <MainLayout
   title="Jakub Olszewski - Digital Portfolio"
   seoDesc="FullStack web developer with experience in React, Astro, NextJS, Express, MongoDB, NodeJS focusing on accessibility and sustainability"
 >
-  <div class="w-8/12 md:w-6/12 mx-auto ">
-	<h1 class="text-5xl md:text-6xl text-center">Hi! I am Jakub Olszewski</h1>
-  <div class="text-center py-5">
-    <span id="typed"></span>
+  <div class="flex flex-col items-center justify-center min-h-[85vh]">
+    <h1 class="font-sans text-6xl md:text-6xl text-center text-(--text)">Hi! I am Jakub Olszewski</h1>
+    <div class="text-center py-5">
+      <span id="typed"></span>
+    </div>
+
+    <script>
+      import Typed from "typed.js";
+      var typed = new Typed("#typed", {
+        strings: [
+          "I am a <strong>Web Developer</strong>",
+          "I <em>work</em> with React, NextJS, Astro, and Express",
+        ],
+        typeSpeed: 40,
+        loop: true,
+      });
+    </script>
   </div>
 </MainLayout>
-   <script>
-    import Typed from "typed.js";
-    var typed = new Typed('#typed', {
-      strings: ['I am a <strong>Web Developer</strong>', 'I <em>work</em> with React, NextJS, Astro, and Express'],
-      typeSpeed: 40,
-      loop: true
-    });
-  </script>

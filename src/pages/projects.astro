@@ -1,61 +1,31 @@
 ---
 import MainLayout from "../layout/MainLayout.astro";
+const projects = [
+  { slug: 'studyfront', name: 'Studyfront',      desc: 'A research platform for conducting studies.' },
+  { slug: 'bachelor',   name: 'Bachelor Thesis', desc: 'An AI learning platform with focus on pedagogic approach and cognitive understanding.' },
+  { slug: 'yapper',     name: 'Yapper',          desc: 'A social media platform stylized to look like Windows 95!' },
+  { slug: 'cjs',        name: 'AI Quiz App',     desc: 'Check if you can tell AI from real images!' },
+]
 ---
 
 <MainLayout
   title="Jakub Olszewski's Projects"
   seoDesc="A list of projects and experiences"
 >
-  <div
-    class="w-8/12 lg:w-6/12 mx-auto drop-shadow-[10px_10px_10px_rgba(1,1,1,0.4)]"
-  >
-    <h1 class="text-5xl my-2">Projects</h1>
-    <div class="grid md:grid-cols-2 gap-15">
-      <div>
-        <a href="/projects/studyfront"
-          ><img
-            class="my-10 rounded"
-            src="/images/studyfront-project-image.png"
-            width="500px"
-            height="500px"
-            alt=""
-          /></a>
-          <h1 class="text-2xl">Project: Studyfront</h1>
-      </div>
-      <div>
-        <a href="/projects/bachelor"
-          ><img
-            class="my-10 rounded"
-            src="/images/bachelor-project-image.png"
-            width="500px"
-            height="500px"
-            alt=""
-          /></a>
-          <h1 class="text-2xl">Project: Bachelor Thesis</h1>
-      </div>
-      <div>
-        <a href="/projects/yapper"
-          ><img
-            class="my-10 rounded"
-            src="/images/yapper-project-image.png"
-            width="500px"
-            height="500px"
-            alt=""
-          /></a>
-          <h1 class="text-2xl">Project: Yapper</h1>
-      </div>
-      <div>
-        <a href="/projects/cjs"
-          ><img
-            class="my-10 rounded"
-            src="/images/cjs-project-image.png"
-            width="500px"
-            height="500px"
-            alt=""
-          /></a
-        >
-        <h1 class="text-2xl">Project: AI quiz app</h1>
-      </div>
+  <div class="w-8/12 lg:w-6/12 mx-auto">
+    <p class="text-s my-6 text-(--accent)">My work</p>
+    <div class="grid md:grid-cols-2 gap-6">
+      {projects.map(p => (
+        <div class="hover:scale-[1.02] transition-transform duration-300 bg-(--surface) border border-(--border) rounded-md overflow-hidden">
+          <a href={`/projects/${p.slug}`}>
+            <img class="aspect-video object-cover w-full" src={`/images/${p.slug}-project-image.png`} alt={p.name} />
+          </a>
+          <div class="p-4">
+            <h2 class="text-2xl font-sans text-(--text)">Project: {p.name}</h2>
+            <p class="font-mono text-sm text-(--muted) mt-1">{p.desc}</p>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 </MainLayout>
