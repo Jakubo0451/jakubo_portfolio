@@ -9,6 +9,12 @@ export async function getStaticPaths() {
         name: "Studyfront",
         desc: "A web app built for researchers who need to create and run studies. It is built with Next.js as part of a Full Stack Web Development course, it supports seven question types, time-limited studies, unpublished previews, and result exports in CSV or JSON. Live at group5.sustainability.it.ntnu.no",
         link: "https://group5.sustainability.it.ntnu.no",
+        stack: [
+          "NextJS",
+          "Tailwind",
+          "MongoDB",
+          "Docker"
+        ]
 
     },
     },
@@ -17,6 +23,15 @@ export async function getStaticPaths() {
       props: {
         name: "Ellerin",
         desc: "Our bachelor thesis turned into a working platform. It grew out of a literature study as a part of a In Depth Project subject, on how AI affects student learning. We have found the impact depends heavily on how it's used and who the receipient is. Ellerin tries to push it in a useful direction: it uses AI to map what a student already knows, identifies the gaps, and builds a personalised curriculum from there. Built with the MERN stack. Currently in early development.",
+        link: "https://ellerin.no",
+        stack: [
+          "React",
+          "SASS",
+          "MongoDB",
+          "Express",
+          "ClaudeSDK",
+          "NodeJS"
+        ]
       },
     },
     {
@@ -25,6 +40,12 @@ export async function getStaticPaths() {
         name: "Yapper",
         desc: "A Twitter clone built for a Cloud Technologies course, with the focus on backend, caching, reverse proxy, and load balancing. The backend runs on Python with PostgreSQL, and the frontend is React. We gave it a Windows 95 aesthetic because why not. Live at yapper-zwai.onrender.com",
         link: "https://yapper-zwai.onrender.com/login",
+        stack: [
+          "React",
+          "Python",
+          "FastAPI",
+          "PosgreSQL"
+        ]
         },
     },
     {
@@ -32,13 +53,19 @@ export async function getStaticPaths() {
       props: {
         name: "CJS",
         desc: "A quiz app built for museums to raise awareness about AI-generated images. Visitors are shown two images side by side and have to spot which one was made by AI. It's designed to get people thinking about how convincing AI imagery has become.",
+        stack: [
+          "React",
+          "Express",
+          "MongoDB",
+          "NodeJS"
+        ]
       },
     },
   ];
 }
 
 const { projects } = Astro.params;
-const { name, desc, link  } = Astro.props;
+const { name, desc, link, stack  } = Astro.props;
 ---
 
 <MainLayout>
@@ -53,6 +80,12 @@ const { name, desc, link  } = Astro.props;
         alt={name}
       />
 
+            <div class="flex flex-wrap gap-2 mt-4 mb-4">
+          {
+              stack.map((t) => <span class="pill">{t}</span>)
+          }
+        </div>
+
     <div class="mt-8 border-t border-(--border) pt-8">
       <p class="font-mono text-sm text-(--text) leading-loose">{desc}</p>
       {link && (
@@ -60,6 +93,9 @@ const { name, desc, link  } = Astro.props;
           Visit project ↗
         </a>
       )}
+    </div>
+
+
     </div>
 
   </div>
