@@ -1,12 +1,9 @@
 ---
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="text-center mt-atuo py-4 border-t border-(--border) font-mono text-xs text-white">
-    <small>
-        Copyright &copy; <span id="copyright"></span> | I assert the moral right to be identified as the author of this website, and woe betide anyone who suggests otherwise
-    </small>
+<footer class="mt-auto border-t border-(--border) py-4 text-center font-mono text-xs text-(--text)">
+  <small>
+    Copyright &copy; {currentYear} | I assert the moral right to be identified as the author of this website, and woe betide anyone who suggests otherwise
+  </small>
 </footer>
-
-<script defer>
-    document.querySelector('#copyright').textContent = new Date().getFullYear().toString();
-</script>

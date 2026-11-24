@@ -1,116 +1,114 @@
 ---
 import MainLayout from "../layout/MainLayout.astro";
+
+const skills = [
+  "HTML",
+  "CSS",
+  "SCSS",
+  "JavaScript",
+  "React",
+  "Next.js",
+  "Tailwind CSS",
+  "Astro",
+  "Node.js",
+  "Express.js",
+  "Python",
+  "FastAPI",
+  "MongoDB",
+  "Mongoose",
+  "PostgreSQL",
+  "SQL",
+  "SQLAlchemy",
+  "REST APIs",
+  "Git",
+  "GitHub",
+  "Postman",
+  "Docker",
+  "Linux",
+  "Jest",
+  "Puppeteer",
+  "WCAG",
+  "Figma",
+  "Adobe Illustrator",
+  "Adobe Photoshop",
+  "TypeScript (currently learning)"
+];
 ---
 
-<MainLayout title="Jakub Olszewski's about">
-  <div class="max-w-185 mx-auto px-8 py-20">
-    <p class="font-mono text-s text-(--accent) mb-3">About</p>
-    <section>
-      <section
-        class="p-4 bg-(--surface) mb-10 border border-(--border) rounded-md overflow-hidden"
-      >
-        <h2
-          class="mb-3 font-sans text-4xl border-l-2 border-(--accent) pl-3"
-        >
-          What I Build
-        </h2>
-        <p class="font-mono">
-          Most of what I've been working on has been made with JavaScript. Both
-          the component driven frontends and the APIs behind them. I'm more
-          comfortable on the frontend, but I am actively looking to improve
-          myself across the stack.
-        </p>
-        <br />
-        <p>I work with: </p>
-        <div class="flex flex-wrap gap-2 mt-4 mb-4">
-          {
-            [
-              "HTML",
-              "CSS",
-              "JavaScript",
-              "React",
-              "NextJS",
-              "Astro",
-              "Node.js",
-              "Express",
-              "MongoDB",
-              'Python',
-              "Figma",
-              "Illustrator",
-              "Photoshop",
-            ].map((t) => <span class="pill">{t}</span>)
-          }
-        </div>
-      </section>
+<MainLayout
+  title="About | Jakub Olszewski"
+  description="About Jakub Olszewski, an NTNU Web Development graduate with experience in React, full-stack development, accessibility and data centre operations."
+>
+  <div class="mx-auto max-w-185 px-8 py-16 md:py-20">
+    <p class="mb-3 font-mono text-xs text-(--accent)">A little about me</p>
+    <h1 class="mb-10 font-sans text-4xl text-(--text)">About</h1>
 
-      <section
-        class="p-4 bg-(--surface) mb-10 border border-(--border) rounded-md overflow-hidden"
-      >
-        <h2
-          class="mb-3 font-sans text-4xl border-l-2 border-(--accent) pl-3"
-        >
-          How I Work
-        </h2>
-        <p class="font-mono">
-          I try not to overthink my code so that it is simple and easy to
-          follow, not just for me but for my colleagues and whoever reads it
-          next. I care about accessibility, sustainability browser consistency
-          and not overcomplicating things.
-        </p>
-      </section>
+    <section class="mb-10 overflow-hidden rounded-md border border-(--border) bg-(--surface) p-4">
+      <h2 class="mb-3 border-l-2 border-(--accent) pl-3 font-sans text-3xl text-(--text)">
+        What I Build
+      </h2>
+      <p class="font-mono leading-relaxed">
+        I am a web developer with a frontend focus. I primarily work with JavaScript and React, and have also developed backend functionality using Node.js and Express. My projects have involved REST APIs, authentication, database modelling and connecting frontend applications to backend services. I have also used Python with FastAPI and PostgreSQL in a university project.
+      </p>
+      <p class="mt-5">Technologies and tools:</p>
+      <div class="mb-4 mt-4 flex flex-wrap gap-2">
+        {skills.map((skill) => <span class="pill">{skill}</span>)}
+      </div>
+    </section>
 
-      <section
-        class="p-4 bg-(--surface) mb-10 border border-(--border) rounded-md overflow-hidden"
-      >
-        <h2
-          class="mb-3 font-sans text-4xl border-l-2 border-(--accent) pl-3"
-        >
-          Experience
-        </h2>
-        <p class="font-mono">
-          Before finishing my degree I did an internship as a Datacenter
-          Operations Engineer at a ByteDance datacenter. It was a different side
-          of the industry from web development, physical infrastructure,
-          operations, keeping things running at scale, breakfix and datacenter
-          operations. I came away with a letter of recommendation and a much
-          better understanding of what sits underneath the software I build.
-        </p>
-      </section>
+    <section class="mb-10 overflow-hidden rounded-md border border-(--border) bg-(--surface) p-4">
+      <h2 class="mb-3 border-l-2 border-(--accent) pl-3 font-sans text-3xl text-(--text)">
+        How I Work
+      </h2>
+      <p class="font-mono leading-relaxed">
+        I prefer clear, maintainable code and straightforward solutions. I pay attention to how the frontend and backend fit together, how errors are handled and how an interface works across screen sizes. When something breaks, I try to understand the cause before changing the code. Accessibility is also part of my development background: I completed a dedicated course and evaluated real interfaces against WCAG for external NTNU partners.
+      </p>
+    </section>
 
-      <section
-        class="p-4 bg-(--surface) border border-(--border) rounded-md overflow-hidden"
-      >
-        <h2
-          class="mb-3 font-sans text-4xl border-l-2 border-(--accent) pl-3"
-        >
-          Let's Connect
-        </h2>
-        <p class="font-mono">
-          Always happy to chat or hear about new opportunities.
+    <section class="mb-10 overflow-hidden rounded-md border border-(--border) bg-(--surface) p-4">
+      <h2 class="mb-3 border-l-2 border-(--accent) pl-3 font-sans text-3xl text-(--text)">
+        Experience
+      </h2>
+      <div class="font-mono leading-relaxed">
+        <h3 class="text-(--text)">Data Center Operations Intern</h3>
+        <p class="mt-1 text-sm text-(--muted)">TikTok, Green Mountain Data Center, Hamar | June to August 2025</p>
+        <p class="mt-4">
+          I worked hands-on with server and network hardware, including SSDs, HDDs, power supply units and network switches. I also worked with fibre-optic cables, including cleaning and troubleshooting, and used Linux logs and command-line tools to investigate hardware issues. I assisted with infrastructure installations, including equipment racking, cabling, labelling and connection checks, and coordinated external vendors carrying out other installation work. I also followed up operational incidents through an internal ticketing system.
         </p>
-        <ul class="mt-3 flex flex-col gap-1">
-          <li>
-            <a
+      </div>
+    </section>
+
+    <section class="overflow-hidden rounded-md border border-(--border) bg-(--surface) p-4">
+      <h2 class="mb-3 border-l-2 border-(--accent) pl-3 font-sans text-3xl text-(--text)">
+        Let's Connect
+      </h2>
+      <p class="font-mono leading-relaxed">
+        Always happy to chat or hear about new opportunities.
+      </p>
+      <ul class="mt-3 flex flex-col gap-2">
+        <li>
+          <a
+            href="https://github.com/Jakubo0451"
             target="_blank"
-              href="https://github.com/Jakubo0451"
-              class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors"
-              >GitHub ↗</a>
-          </li>
-          <li>
-            <a
+            rel="noopener noreferrer"
+            class="font-mono text-sm text-(--muted) transition-colors hover:text-(--accent)"
+          >GitHub ↗</a>
+        </li>
+        <li>
+          <a
+            href="https://www.linkedin.com/in/jakub-olszewski-43922534a/"
             target="_blank"
-              href="https://www.linkedin.com/in/jakub-olszewski-43922534a/"
-              class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors"
-              >LinkedIn ↗</a>
-          </li>
-          <li>
-            <a
-              href="mailto:jakubolszewski451@gmail.com"
-              class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors"
-              >Email ↗</a>
-          </li>
-        </ul>
-      </section>
+            rel="noopener noreferrer"
+            class="font-mono text-sm text-(--muted) transition-colors hover:text-(--accent)"
+          >LinkedIn ↗</a>
+        </li>
+        <li>
+          <a
+            href="mailto:jakubolszewski451@gmail.com"
+            class="font-mono text-sm text-(--muted) transition-colors hover:text-(--accent)"
+          >jakubolszewski451@gmail.com</a>
+        </li>
+      </ul>
     </section>
   </div>
 </MainLayout>

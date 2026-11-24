@@ -1,16 +1,21 @@
 ---
 import MainHead from "./MainHead.astro";
 import "../styles/global.css";
-import Nav from "../components/Nav.astro"
+import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-const { title, seoTitle, seoDesc } = Astro.props;
+
+const { title, description } = Astro.props;
 ---
 
-<html>
-    <MainHead title={title} seoTitle={seoTitle} seoDesc={seoDesc} />
-    <body class="bg-(--bg) text-(--text) grid gap-0 min-h-screen">
-        <Nav />
-        <slot />
-        <Footer/>
-    </body>
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <MainHead title={title} description={description} />
+  <body class="flex min-h-screen flex-col bg-(--bg) text-(--text)">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Nav />
+    <main id="main-content" class="w-full flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>
