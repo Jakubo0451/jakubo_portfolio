@@ -3,25 +3,75 @@ import MainLayout from "../layout/MainLayout.astro";
 ---
 
 <MainLayout
-  title="Jakub Olszewski - Digital Portfolio"
-  seoDesc="FullStack web developer with experience in React, Astro, NextJS, Express, MongoDB, NodeJS focusing on accessibility and sustainability"
+  title="Jakub Olszewski | Web Developer"
+  description="Web developer and NTNU graduate focused on JavaScript, React and full-stack web development, with experience in APIs, databases and accessibility."
 >
-  <div class="flex flex-col items-center justify-center min-h-[85vh]">
-    <h1 class="font-sans text-6xl md:text-6xl text-center text-(--text)">Hi! I am Jakub Olszewski</h1>
-    <div class="text-center py-5">
-      <span id="typed"></span>
+  <div class="flex min-h-[85vh] flex-col items-center justify-center px-6 py-16 text-center">
+    <h1 class="font-sans text-4xl text-(--text) md:text-6xl">
+      Hi! I am Jakub Olszewski
+    </h1>
+
+    <p class="mt-5 max-w-3xl font-mono text-sm leading-relaxed text-(--muted) md:text-base">
+      I am a Web Development graduate from NTNU with a frontend focus and practical experience building full-stack web applications.
+    </p>
+
+    <p class="mt-5 font-mono text-sm text-(--accent) md:text-base">
+      I work with <span id="typed" aria-hidden="true"></span>
+    </p>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a
+        href="/projects"
+        class="border border-(--accent) px-4 py-2 font-mono text-sm text-(--accent) transition-colors hover:bg-(--accent) hover:text-(--bg)"
+      >View projects</a>
+      <a
+        href="/about"
+        class="border border-(--border) px-4 py-2 font-mono text-sm text-(--text) transition-colors hover:border-(--accent) hover:text-(--accent)"
+      >About me</a>
+      <a
+        href="mailto:jakubolszewski451@gmail.com"
+        class="border border-(--border) px-4 py-2 font-mono text-sm text-(--text) transition-colors hover:border-(--accent) hover:text-(--accent)"
+      >Contact</a>
     </div>
 
-    <script>
-      import Typed from "typed.js";
-      var typed = new Typed("#typed", {
-        strings: [
-          "I am a <strong>Web Developer</strong>",
-          "I <em>work</em> with React, NextJS, Astro, and Express",
-        ],
-        typeSpeed: 40,
-        loop: true,
-      });
-    </script>
+    <div class="mt-7 flex flex-wrap justify-center gap-5">
+      <a
+        href="https://github.com/Jakubo0451"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-mono text-xs text-(--muted) transition-colors hover:text-(--accent)"
+      >GitHub ↗</a>
+      <a
+        href="https://www.linkedin.com/in/jakub-olszewski-43922534a/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-mono text-xs text-(--muted) transition-colors hover:text-(--accent)"
+      >LinkedIn ↗</a>
+    </div>
   </div>
 </MainLayout>
+
+<script>
+  import Typed from "typed.js";
+
+  const typedElement = document.getElementById("typed");
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (typedElement && !prefersReducedMotion) {
+    new Typed(typedElement, {
+      strings: [
+        "React and JavaScript",
+        "frontend and backend",
+        "APIs and databases",
+      ],
+      typeSpeed: 40,
+      backSpeed: 25,
+      backDelay: 1600,
+      loop: true,
+      showCursor: true,
+      cursorChar: "_",
+    });
+  }
+</script>

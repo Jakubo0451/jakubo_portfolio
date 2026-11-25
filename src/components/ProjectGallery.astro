@@ -1,0 +1,177 @@
+---
+const { images = [], projectName = "Project" } = Astro.props;
+const galleryImages = Array.isArray(images) ? images : [];
+const firstImage = galleryImages[0];
+const galleryId = `gallery-${String(projectName).toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+---
+
+{firstImage && (
+  <figure
+    class="project-gallery"
+    data-project-gallery
+    role="group"
+    aria-roledescription="carousel"
+    aria-label={`Screenshots of ${projectName}`}
+  >
+    <div class="project-gallery__frame">
+      <img
+        id={`${galleryId}-image`}
+        class="project-gallery__image"
+        src={firstImage.src}
+        alt={firstImage.alt}
+        width={firstImage.width}
+        height={firstImage.height}
+        data-gallery-image
+        fetchpriority="high"
+        decoding="async"
+      />
+
+      {galleryImages.length > 1 && (
+        <>
+          <button
+            class="project-gallery__control project-gallery__control--previous"
+            type="button"
+            data-gallery-previous
+            aria-label={`Show previous ${projectName} screenshot`}
+            aria-controls={`${galleryId}-image`}
+            hidden
+          >
+            <span aria-hidden="true">&#8592;</span>
+          </button>
+          <button
+            class="project-gallery__control project-gallery__control--next"
+            type="button"
+            data-gallery-next
+            aria-label={`Show next ${projectName} screenshot`}
+            aria-controls={`${galleryId}-image`}
+            hidden
+          >
+            <span aria-hidden="true">&#8594;</span>
+          </button>
+        </>
+      )}
+    </div>
+
+    {galleryImages.length > 1 && (
+      <figcaption class="project-gallery__caption">
+        <span data-gallery-caption>{firstImage.caption ?? ""}</span>
+        <span data-gallery-counter aria-live="polite">1 / {galleryImages.length}</span>
+      </figcaption>
+    )}
+
+    <div hidden>
+      {galleryImages.map((image) => (
+        <span
+          data-gallery-item
+          data-src={image.src}
+          data-alt={image.alt}
+          data-caption={image.caption ?? ""}
+          data-width={image.width}
+          data-height={image.height}
+        ></span>
+      ))}
+    </div>
+  </figure>
+)}
+
+<script>
+  type GalleryImage = {
+    src: string;
+    alt: string;
+    caption: string;
+    width: number;
+    height: number;
+  };
+
+  const galleries = document.querySelectorAll<HTMLElement>(
+    "[data-project-gallery]"
+  );
+
+  galleries.forEach((gallery) => {
+    const image = gallery.querySelector<HTMLImageElement>(
+      "[data-gallery-image]"
+    );
+
+    const previousButton = gallery.querySelector<HTMLButtonElement>(
+      "[data-gallery-previous]"
+    );
+
+    const nextButton = gallery.querySelector<HTMLButtonElement>(
+      "[data-gallery-next]"
+    );
+
+    const caption = gallery.querySelector<HTMLElement>(
+      "[data-gallery-caption]"
+    );
+
+    const counter = gallery.querySelector<HTMLElement>(
+      "[data-gallery-counter]"
+    );
+
+    const images: GalleryImage[] = Array.from(
+      gallery.querySelectorAll<HTMLElement>("[data-gallery-item]")
+    ).map((item: HTMLElement): GalleryImage => ({
+      src: item.dataset.src ?? "",
+      alt: item.dataset.alt ?? "",
+      caption: item.dataset.caption ?? "",
+      width: Number(item.dataset.width) || 0,
+      height: Number(item.dataset.height) || 0
+    }));
+
+    if (!image || images.length < 2 || !previousButton || !nextButton) {
+      return;
+    }
+
+    let currentIndex = 0;
+
+    const showImage = (index: number): void => {
+      currentIndex = (index + images.length) % images.length;
+
+      const currentImage = images[currentIndex];
+
+      if (!currentImage) {
+        return;
+      }
+
+      image.src = currentImage.src;
+      image.alt = currentImage.alt;
+
+      if (currentImage.width > 0) {
+        image.width = currentImage.width;
+      }
+
+      if (currentImage.height > 0) {
+        image.height = currentImage.height;
+      }
+
+      if (caption) {
+        caption.textContent = currentImage.caption;
+      }
+
+      if (counter) {
+        counter.textContent = `${currentIndex + 1} / ${images.length}`;
+      }
+    };
+
+    previousButton.addEventListener("click", () => {
+      showImage(currentIndex - 1);
+    });
+
+    nextButton.addEventListener("click", () => {
+      showImage(currentIndex + 1);
+    });
+
+    previousButton.hidden = false;
+    nextButton.hidden = false;
+
+    gallery.addEventListener("keydown", (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        showImage(currentIndex - 1);
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        showImage(currentIndex + 1);
+      }
+    });
+  });
+</script>

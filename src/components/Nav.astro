@@ -1,49 +1,91 @@
 ---
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+
+const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const isProjectsPage = currentPath === "/projects" || currentPath.startsWith("/projects/");
 ---
 
-<header class="lg:flex items-center p-5 gap-5 border-b border-(--border)">
-  <Astronav>
-    <div class="flex w-full justify-between items-center">
+<header class="lg:flex items-center gap-5 border-b border-(--border) p-5">
+  <Astronav closeOnClick>
+    <div class="flex w-full items-center justify-between">
       <a
         href="/"
-        class="font-mono text-(--text) hover:text-(--accent) transition-colors"
+        class="font-mono text-(--text) transition-colors hover:text-(--accent)"
+        aria-label="Jakub Olszewski, home"
       >JO</a>
+
       <div class="flex items-center gap-3">
         <button
           id="theme-toggle"
-          class="font-mono text-xs text-(--muted) hover:text-(--text) transition-colors border border-(--border) px-3 py-1 rounded-sm"
+          type="button"
+          class="rounded-sm border border-(--border) px-3 py-1 font-mono text-xs text-(--muted) transition-colors hover:text-(--text)"
+          aria-label="Switch colour theme"
         >light</button>
         <div class="block lg:hidden">
-          <MenuIcon class="w-4 h-4 text-mahogny" />
+          <MenuIcon class="h-4 w-4 text-(--accent)" />
         </div>
       </div>
     </div>
-    <MenuItems class="hidden lg:flex">
-      <ul class="flex flex-col items-end lg:items-start lg:flex-row lg:gap-5">
-        <li><a class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200" href="/">Home</a></li>
-        <li><a class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200" href="/projects">Work</a></li>
-        <li><a class="font-mono text-sm text-(--muted) hover:text-(--accent) transition-colors duration-200" href="/about">About</a></li>
+
+    <MenuItems class="hidden lg:flex" aria-label="Main navigation">
+      <ul class="flex flex-col items-end lg:flex-row lg:items-start lg:gap-5">
+        <li>
+          <a
+            class="font-mono text-sm text-(--muted) transition-colors duration-200 hover:text-(--accent)"
+            href="/"
+            aria-current={currentPath === "/" ? "page" : undefined}
+          >Home</a>
+        </li>
+        <li>
+          <a
+            class="font-mono text-sm text-(--muted) transition-colors duration-200 hover:text-(--accent)"
+            href="/projects"
+            aria-current={isProjectsPage ? "page" : undefined}
+          >Projects</a>
+        </li>
+        <li>
+          <a
+            class="font-mono text-sm text-(--muted) transition-colors duration-200 hover:text-(--accent)"
+            href="/about"
+            aria-current={currentPath === "/about" ? "page" : undefined}
+          >About</a>
+        </li>
       </ul>
     </MenuItems>
   </Astronav>
 </header>
 
-<script defer>
+<script>
   const toggle = document.getElementById("theme-toggle");
-  const html = document.documentElement;
+  const root = document.documentElement;
 
-  const saved = localStorage.getItem("theme");
-  if (saved) {
-    html.setAttribute("data-theme", saved);
-    toggle.textContent = saved === "light" ? "dark" : "light";
+  if (toggle) {
+    const updateToggle = () => {
+      const isLight = root.getAttribute("data-theme") === "light";
+      toggle.textContent = isLight ? "dark" : "light";
+      toggle.setAttribute(
+        "aria-label",
+        isLight ? "Switch to dark theme" : "Switch to light theme"
+      );
+
+      const themeColor = document.querySelector('meta[name="theme-color"]');
+      themeColor?.setAttribute("content", isLight ? "#F9F0EA" : "#0e0e0e");
+    };
+
+    updateToggle();
+
+    toggle.addEventListener("click", () => {
+      const currentTheme = root.getAttribute("data-theme");
+      const nextTheme = currentTheme === "light" ? "dark" : "light";
+      root.setAttribute("data-theme", nextTheme);
+
+      try {
+        window.localStorage.setItem("theme", nextTheme);
+      } catch {
+        // Theme switching still works for the current page.
+      }
+
+      updateToggle();
+    });
   }
-
-  toggle.addEventListener("click", () => {
-    const current = html.getAttribute("data-theme");
-    const next = current === "light" ? "dark" : "light";
-    html.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
-    toggle.textContent = next === "light" ? "dark" : "light";
-  });
 </script>

@@ -1,30 +1,67 @@
 ---
 import MainLayout from "../layout/MainLayout.astro";
-const projects = [
-  { slug: 'studyfront', name: 'Studyfront',      desc: 'A research platform for conducting studies.' },
-  { slug: 'bachelor',   name: 'Bachelor Thesis', desc: 'An AI learning platform with focus on pedagogic approach and cognitive understanding.' },
-  { slug: 'yapper',     name: 'Yapper',          desc: 'A social media platform stylized to look like Windows 95!' },
-  { slug: 'cjs',        name: 'AI Quiz App',     desc: 'Check if you can tell AI from real images!' },
-]
+import { projects } from "../data/projects.js";
 ---
 
 <MainLayout
-  title="Jakub Olszewski's Projects"
-  seoDesc="A list of projects and experiences"
+  title="Projects | Jakub Olszewski"
+  description="Selected web development projects by Jakub Olszewski, including Ellerin, Studyfront, Skycast, Yapper and CJS."
 >
-  <div class="w-8/12 lg:w-6/12 mx-auto">
-    <p class="text-s my-6 text-(--accent)">My work</p>
-    <div class="grid md:grid-cols-2 gap-6">
-      {projects.map(p => (
-        <div class="hover:scale-[1.02] transition-transform duration-300 bg-(--surface) border border-(--border) rounded-md overflow-hidden">
-          <a href={`/projects/${p.slug}`}>
-            <img class="aspect-video object-cover w-full" src={`/images/${p.slug}-project-image.png`} alt={p.name} />
+  <div class="mx-auto w-11/12 max-w-6xl py-12 md:w-10/12 md:py-16">
+    <p class="my-3 font-mono text-xs text-(--accent)">Selected work</p>
+    <h1 class="mb-4 font-sans text-4xl text-(--text)">Projects</h1>
+    <p class="mb-10 max-w-3xl font-mono text-sm leading-relaxed text-(--muted)">
+      A selection of university and personal projects. Each page describes the project, the technologies used and my contributions.
+    </p>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      {projects.map((project) => (
+        <article class="project-card flex h-full flex-col overflow-hidden rounded-md border border-(--border) bg-(--surface)">
+          <a
+            class="project-card-image-link block overflow-hidden"
+            href={`/projects/${project.slug}`}
+            aria-label={`View ${project.name} project details`}
+          >
+            {project.images?.[0] ? (
+              <img
+                class="project-card-image aspect-video w-full object-cover"
+                src={project.images[0].src}
+                alt={project.images[0].alt}
+                width={project.images[0].width}
+                height={project.images[0].height}
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <div class="project-placeholder aspect-video" aria-hidden="true">
+                <span class="font-mono text-xs uppercase tracking-widest text-(--accent)">{project.type}</span>
+                <span class="font-sans text-4xl text-(--text)">{project.name}</span>
+                <span class="font-mono text-xs text-(--muted)">{project.imagePlaceholderCaption}</span>
+              </div>
+            )}
           </a>
-          <div class="p-4">
-            <h2 class="text-2xl font-sans text-(--text)">Project: {p.name}</h2>
-            <p class="font-mono text-sm text-(--muted) mt-1">{p.desc}</p>
+
+          <div class="flex flex-1 flex-col p-4">
+            <p class="font-mono text-xs text-(--accent)">{project.type} · {project.team}</p>
+            <h2 class="mt-2 font-sans text-2xl text-(--text)">
+              <a class="transition-colors hover:text-(--accent)" href={`/projects/${project.slug}`}>
+                {project.name}
+              </a>
+            </h2>
+            <p class="mt-2 font-mono text-sm leading-relaxed text-(--muted)">{project.cardDescription}</p>
+
+            <div class="mt-4 flex flex-wrap gap-2">
+              {project.stack.slice(0, 5).map((technology) => (
+                <span class="pill">{technology}</span>
+              ))}
+            </div>
+
+            <a
+              href={`/projects/${project.slug}`}
+              class="mt-auto pt-5 inline-block font-mono text-sm text-(--accent) hover:underline"
+            >Project details ↗</a>
           </div>
-        </div>
+        </article>
       ))}
     </div>
   </div>

@@ -1,102 +1,91 @@
 ---
 import MainLayout from "../../layout/MainLayout.astro";
+import ProjectGallery from "../../components/ProjectGallery.astro";
+import { projects } from "../../data/projects.js";
 
 export async function getStaticPaths() {
-  return [
-    {
-      params: { projects: "studyfront" },
-      props: {
-        name: "Studyfront",
-        desc: "A web app built for researchers who need to create and run studies. It is built with Next.js as part of a Full Stack Web Development course, it supports seven question types, time-limited studies, unpublished previews, and result exports in CSV or JSON. Live at group5.sustainability.it.ntnu.no",
-        link: "https://group5.sustainability.it.ntnu.no",
-        stack: [
-          "NextJS",
-          "Tailwind",
-          "MongoDB",
-          "Docker"
-        ]
-
-    },
-    },
-    {
-      params: { projects: "bachelor" },
-      props: {
-        name: "Ellerin",
-        desc: "Our bachelor thesis turned into a working platform. It grew out of a literature study as a part of a In Depth Project subject, on how AI affects student learning. We have found the impact depends heavily on how it's used and who the receipient is. Ellerin tries to push it in a useful direction: it uses AI to map what a student already knows, identifies the gaps, and builds a personalised curriculum from there. Built with the MERN stack.",
-        link: "https://ellerin.no",
-        stack: [
-          "React",
-          "SASS",
-          "MongoDB",
-          "Express",
-          "ClaudeSDK",
-          "NodeJS"
-        ]
-      },
-    },
-    {
-      params: { projects: "yapper" },
-      props: {
-        name: "Yapper",
-        desc: "A Twitter clone built for a Cloud Technologies course, with the focus on backend, caching, reverse proxy, and load balancing. The backend runs on Python with PostgreSQL, and the frontend is React. We gave it a Windows 95 aesthetic because why not. Live at yapper-zwai.onrender.com",
-        link: "https://yapper-zwai.onrender.com/login",
-        stack: [
-          "React",
-          "Python",
-          "FastAPI",
-          "PosgreSQL"
-        ]
-        },
-    },
-    {
-      params: { projects: "cjs" },
-      props: {
-        name: "CJS",
-        desc: "A quiz app built for museums to raise awareness about AI-generated images. Visitors are shown two images side by side and have to spot which one was made by AI. It's designed to get people thinking about how convincing AI imagery has become.",
-        stack: [
-          "React",
-          "Express",
-          "MongoDB",
-          "NodeJS"
-        ]
-      },
-    },
-  ];
+  return projects.map((project) => ({
+    params: { projects: project.slug },
+    props: { project }
+  }));
 }
 
-const { projects } = Astro.params;
-const { name, desc, link, stack  } = Astro.props;
+const { project } = Astro.props;
+const pageTitle = `${project.name} | Jakub Olszewski`;
+const pageDescription = project.cardDescription;
 ---
 
-<MainLayout>
- <div class="max-w-3xl mx-auto px-4 md:px-8 py-16">
-    
-    <p class="font-mono text-xs text-(--accent) tracking-widest uppercase mb-4">Project</p>
-    <h1 class="font-sans text-5xl text-(--text) mb-8">{name}</h1>
-    
-      <img
-        src={`/images/${projects}-project-image.png`}
-        class="rounded w-full h-auto border border-(--border)"
-        alt={name}
-      />
+<MainLayout title={pageTitle} description={pageDescription}>
+  <div class="mx-auto max-w-3xl px-4 py-12 md:px-8 md:py-16">
+    <p class="mb-4 font-mono text-xs uppercase tracking-widest text-(--accent)">
+      {project.type}
+    </p>
+    <h1 class="mb-3 font-sans text-4xl text-(--text) md:text-5xl">{project.name}</h1>
+    <p class="mb-2 font-mono text-sm text-(--muted)">
+      {project.period} · {project.team}
+    </p>
+    {project.result && (
+      <p class="mb-8 font-mono text-xs text-(--accent)">{project.result}</p>
+    )}
+    {!project.result && <div class="mb-8" />}
 
-            <div class="flex flex-wrap gap-2 mt-4 mb-4">
-          {
-              stack.map((t) => <span class="pill">{t}</span>)
-          }
-        </div>
+    {project.images?.length > 0 ? (
+      <ProjectGallery images={project.images} projectName={project.name} />
+    ) : (
+      <div class="project-placeholder aspect-video rounded border border-(--border)" aria-hidden="true">
+        <span class="font-mono text-xs uppercase tracking-widest text-(--accent)">{project.type}</span>
+        <span class="font-sans text-4xl text-(--text)">{project.name}</span>
+        <span class="font-mono text-xs text-(--muted)">{project.imagePlaceholderCaption}</span>
+      </div>
+    )}
 
-    <div class="mt-8 border-t border-(--border) pt-8">
-      <p class="font-mono text-sm text-(--text) leading-loose">{desc}</p>
-      {link && (
-        <a href={link} target="_blank" class="text-(--accent) hover:underline font-mono text-sm mt-4 inline-block">
-          Visit project ↗
-        </a>
+    <div class="mt-6 flex flex-wrap gap-2">
+      {project.stack.map((technology) => <span class="pill">{technology}</span>)}
+    </div>
+
+    <section class="mt-8 border-t border-(--border) pt-8">
+      <h2 class="mb-4 border-l-2 border-(--accent) pl-3 font-sans text-2xl text-(--text)">
+        About the project
+      </h2>
+      {project.description.map((paragraph) => (
+        <p class="mb-4 font-mono text-sm leading-relaxed text-(--text)">{paragraph}</p>
+      ))}
+      {project.note && (
+        <p class="mt-4 font-mono text-xs text-(--muted)">{project.note}</p>
       )}
+    </section>
+
+    <section class="mt-8 border-t border-(--border) pt-8">
+      <h2 class="mb-4 border-l-2 border-(--accent) pl-3 font-sans text-2xl text-(--text)">
+        My contributions
+      </h2>
+      <ul class="list-disc space-y-3 pl-5 font-mono text-sm leading-relaxed text-(--text)">
+        {project.contributions.map((contribution) => <li>{contribution}</li>)}
+      </ul>
+    </section>
+
+    {project.links.length > 0 && (
+      <section class="mt-8 border-t border-(--border) pt-8">
+        <h2 class="mb-4 border-l-2 border-(--accent) pl-3 font-sans text-2xl text-(--text)">
+          Links
+        </h2>
+        <div class="flex flex-wrap gap-x-6 gap-y-3">
+          {project.links.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-mono text-sm text-(--accent) hover:underline"
+            >{link.label} ↗</a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <div class="mt-10 border-t border-(--border) pt-6">
+      <a href="/projects" class="font-mono text-sm text-(--muted) transition-colors hover:text-(--accent)">
+        ← Back to projects
+      </a>
     </div>
-
-
-    </div>
-
   </div>
 </MainLayout>

@@ -1,16 +1,54 @@
 ---
-import { SEO } from "astro-seo";
-const { title, seoTitle, seoDesc } = Astro.props;
+const {
+  title = "Jakub Olszewski | Web Developer",
+  description = "Web developer and NTNU graduate focused on JavaScript, React and full-stack web development."
+} = Astro.props;
+
+const canonicalPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const canonicalUrl = new URL(canonicalPath, Astro.site ?? "https://jakubo.dev");
 ---
 
 <head>
-  <SEO title={seoTitle} description={seoDesc} />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="author" content="Jakub Olszewski" />
+  <meta name="theme-color" content="#0e0e0e" />
+  <link rel="canonical" href={canonicalUrl.href} />
   <title>{title}</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Jakub Olszewski" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl.href} />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="alternate icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Lato:wght@400;700&display=swap"
+    rel="stylesheet"
   />
+
+  <script is:inline>
+    try {
+      const savedTheme = window.localStorage.getItem("theme");
+      if (savedTheme === "light" || savedTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", savedTheme);
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        themeColor?.setAttribute(
+          "content",
+          savedTheme === "light" ? "#F9F0EA" : "#0e0e0e"
+        );
+      }
+    } catch {
+      // The site remains usable when local storage is unavailable.
+    }
+  </script>
 </head>
