@@ -22,13 +22,13 @@ import { projects } from "../data/projects.js";
             href={`/projects/${project.slug}`}
             aria-label={`View ${project.name} project details`}
           >
-            {project.image ? (
+            {project.images?.[0] ? (
               <img
                 class="project-card-image aspect-video w-full object-cover"
-                src={project.image}
-                alt={project.imageAlt}
-                width={project.imageWidth}
-                height={project.imageHeight}
+                src={project.images[0].src}
+                alt={project.images[0].alt}
+                width={project.images[0].width}
+                height={project.images[0].height}
                 loading="lazy"
                 decoding="async"
               />

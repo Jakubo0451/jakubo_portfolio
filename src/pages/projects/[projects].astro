@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layout/MainLayout.astro";
+import ProjectGallery from "../../components/ProjectGallery.astro";
 import { projects } from "../../data/projects.js";
 
 export async function getStaticPaths() {
@@ -28,16 +29,8 @@ const pageDescription = project.cardDescription;
     )}
     {!project.result && <div class="mb-8" />}
 
-    {project.image ? (
-      <img
-        src={project.image}
-        class="h-auto w-full rounded border border-(--border)"
-        alt={project.imageAlt}
-        width={project.imageWidth}
-        height={project.imageHeight}
-        fetchpriority="high"
-        decoding="async"
-      />
+    {project.images?.length > 0 ? (
+      <ProjectGallery images={project.images} projectName={project.name} />
     ) : (
       <div class="project-placeholder aspect-video rounded border border-(--border)" aria-hidden="true">
         <span class="font-mono text-xs uppercase tracking-widest text-(--accent)">{project.type}</span>
